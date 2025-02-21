@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTokens } from './hooks/useTokens';
 import { TokenRow } from './components/TokenRow';
@@ -7,25 +7,8 @@ import { Skull, Rocket, Zap } from 'lucide-react';
 
 function App() {
   const tokens = useTokens(20);
-  const [showWarning, setShowWarning] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShowWarning(false), 3000);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col">
-      {showWarning && (
-        <motion.div
-          initial={{ y: -100 }}
-          animate={{ y: 0 }}
-          exit={{ y: -100 }}
-          className="fixed top-0 left-0 right-0 bg-red-600 p-4 text-center font-bold"
-        >
-          ⚠️ WARNING: CONTAINS FLASHING LIGHTS AND ANIMATIONS ⚠️
-        </motion.div>
-      )}
 
       <header className="border-b border-gray-800 bg-gray-900/95 sticky top-0 backdrop-blur-sm z-10">
         <div className="container mx-auto px-4 py-6">
