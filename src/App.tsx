@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTokens } from './hooks/useTokens';
 import { TokenRow } from './components/TokenRow';
@@ -6,7 +5,21 @@ import { Footer } from './components/Footer';
 import { Skull, Rocket, Zap } from 'lucide-react';
 
 function App() {
-  const tokens = useTokens(20);
+  const { data: tokens = [], isLoading } = useTokens(20);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+        >
+          <Zap className="w-8 h-8 text-purple-400" />
+        </motion.div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col">
 
