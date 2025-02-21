@@ -1,30 +1,27 @@
-import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTokens } from './hooks/useTokens';
-import { TokenRow } from './components/TokenRow';
+import { TokenCard } from './components/TokenRow';
+import { Footer } from './components/Footer';
 import { Skull, Rocket, Zap } from 'lucide-react';
 
 function App() {
-  const tokens = useTokens(20);
-  const [showWarning, setShowWarning] = useState(true);
+  const { data: tokens = [], isLoading } = useTokens(20);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setShowWarning(false), 3000);
-    return () => clearTimeout(timer);
-  }, []);
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+        >
+          <Zap className="w-8 h-8 text-purple-400" />
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      {showWarning && (
-        <motion.div
-          initial={{ y: -100 }}
-          animate={{ y: 0 }}
-          exit={{ y: -100 }}
-          className="fixed top-0 left-0 right-0 bg-red-600 p-4 text-center font-bold"
-        >
-          ⚠️ WARNING: CONTAINS FLASHING LIGHTS AND ANIMATIONS ⚠️
-        </motion.div>
-      )}
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col">
 
       <header className="border-b border-gray-800 bg-gray-900/95 sticky top-0 backdrop-blur-sm z-10">
         <div className="container mx-auto px-4 py-6">
@@ -35,7 +32,7 @@ function App() {
               transition={{ repeat: Infinity, duration: 2 }}
             >
               <Rocket className="w-10 h-10" />
-              <span>PUMP.LOL</span>
+              <span>TAPASS.FUN</span>
             </motion.div>
             
             <motion.button
@@ -54,23 +51,11 @@ function App() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-gray-800/50 rounded-xl overflow-hidden shadow-2xl"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          <div className="grid grid-cols-7 gap-4 p-4 bg-gray-800 font-semibold text-gray-400">
-            <div>Token</div>
-            <div>Name</div>
-            <div>Price</div>
-            <div>24h Change</div>
-            <div>24h Volume</div>
-            <div>Market Cap</div>
-            <div></div>
-          </div>
-
-          <div className="divide-y divide-gray-800">
-            {tokens.map(token => (
-              <TokenRow key={token.id} token={token} />
-            ))}
-          </div>
+          {tokens.map(token => (
+            <TokenCard key={token.id} token={token} />
+          ))}
         </motion.div>
 
         <motion.div
@@ -85,6 +70,7 @@ function App() {
           {tokens.length} Tokens Live
         </motion.div>
       </main>
+      <Footer />
     </div>
   );
 }
