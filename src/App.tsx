@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useTokens } from './hooks/useTokens';
-import { TokenRow } from './components/TokenRow';
+import { TokenCard } from './components/TokenRow';
 import { Footer } from './components/Footer';
 import { Skull, Rocket, Zap } from 'lucide-react';
 
@@ -51,23 +51,11 @@ function App() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-gray-800/50 rounded-xl overflow-hidden shadow-2xl"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          <div className="grid grid-cols-7 gap-4 p-4 bg-gray-800 font-semibold text-gray-400">
-            <div>Token</div>
-            <div>Name</div>
-            <div>Price</div>
-            <div>24h Change</div>
-            <div>24h Volume</div>
-            <div>Market Cap</div>
-            <div></div>
-          </div>
-
-          <div className="divide-y divide-gray-800">
-            {tokens.map(token => (
-              <TokenRow key={token.id} token={token} />
-            ))}
-          </div>
+          {tokens.map(token => (
+            <TokenCard key={token.id} token={token} />
+          ))}
         </motion.div>
 
         <motion.div
