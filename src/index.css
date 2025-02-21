@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes rainbow {
+  0% { color: #ff0000; }
+  16.666% { color: #ff00ff; }
+  33.333% { color: #0000ff; }
+  50% { color: #00ffff; }
+  66.666% { color: #00ff00; }
+  83.333% { color: #ffff00; }
+  100% { color: #ff0000; }
+}
+
+.rainbow-text {
+  animation: rainbow 2s linear infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4c1d95;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5b21b6;
+}
