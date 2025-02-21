@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTokens } from './hooks/useTokens';
 import { TokenRow } from './components/TokenRow';
+import { Footer } from './components/Footer';
 import { Skull, Rocket, Zap } from 'lucide-react';
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col">
       {showWarning && (
         <motion.div
           initial={{ y: -100 }}
@@ -35,7 +36,7 @@ function App() {
               transition={{ repeat: Infinity, duration: 2 }}
             >
               <Rocket className="w-10 h-10" />
-              <span>PUMP.LOL</span>
+              <span>TAPASS.FUN</span>
             </motion.div>
             
             <motion.button
@@ -85,6 +86,7 @@ function App() {
           {tokens.length} Tokens Live
         </motion.div>
       </main>
+      <Footer />
     </div>
   );
 }

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent white background during overscroll */
+:root, html, body {
+  background-color: #111827;
+}
+
 @keyframes rainbow {
   0% { color: #ff0000; }
   16.666% { color: #ff00ff; }
