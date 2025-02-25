@@ -1,4 +1,6 @@
-export interface Token {
+export type TokenInfo = Pick<Token, "id" | "name" | "supply">;
+
+export type Token = {
   id: string;
   name: string;
   symbol: string;
@@ -7,4 +9,5 @@ export interface Token {
   volume24h: number;
   marketCap: number;
   lastUpdate: number;
-}
+  supply: number;
+};
