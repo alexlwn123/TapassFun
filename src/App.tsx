@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useTokens } from './hooks/useTokens';
-import { TokenCard } from './components/TokenRow';
+import { TokenCard } from './components/TokenCard';
 import { Footer } from './components/Footer';
 import { Skull, Rocket, Zap } from 'lucide-react';
 
@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col">
 
-      <header className="border-b border-gray-800 bg-gray-900/95 sticky top-0 backdrop-blur-sm z-10">
+      <header className="border-b border-gray-800 bg-gray-900/95 sticky top-0 backdrop-blur-sm z-20">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <motion.div
@@ -54,7 +54,7 @@ function App() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {tokens.map(token => (
-            <TokenCard key={token.id} token={token} />
+            <TokenCard key={token.id} tokenInfo={token} />
           ))}
         </motion.div>
 
