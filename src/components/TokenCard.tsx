@@ -49,7 +49,7 @@ export const TokenCard: React.FC<TokenCardProps> = ({ tokenInfo }) => {
       });
     };
 
-    const intervalId = setInterval(simulateChanges, Math.random() * 7000);
+    const intervalId = setInterval(simulateChanges, 1000 + Math.random() * 7000);
 
     return () => clearInterval(intervalId);
   }, [token]);
