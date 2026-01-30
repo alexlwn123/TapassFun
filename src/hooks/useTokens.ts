@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { tokensApi } from "../api/tokens";
-import { Token, TokenInfo } from "../types";
+import { TokenInfo, TokenDetails } from "../types";
 
 export const useTokens = (count: number = 20) => {
   return useQuery<TokenInfo[]>({
@@ -10,8 +10,16 @@ export const useTokens = (count: number = 20) => {
 };
 
 export const useTokenDetails = (id: string) => {
-  return useQuery<Token>({
+  return useQuery<TokenDetails>({
     queryKey: ["tokenDetails", id],
     queryFn: () => tokensApi.getTokenDetails(id),
+    enabled: !!id,
+  });
+};
+
+export const useUniverseStats = () => {
+  return useQuery({
+    queryKey: ["universeStats"],
+    queryFn: () => tokensApi.getUniverseStats(),
   });
 };

@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { TokenInfo } from '../types';
 import { Rocket, TrendingDown, TrendingUp, Activity, DollarSign, LineChart } from 'lucide-react';
-// import { useTokenDetails } from '../hooks/useTokens';
 import { generateToken } from '../api/tokens';
 
 interface TokenCardProps {
@@ -204,13 +204,15 @@ export const TokenCard: React.FC<TokenCardProps> = ({ tokenInfo }) => {
             <p className="text-gray-400 text-sm">{displayToken?.name}</p>
           </div>
         </div>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="px-4 py-2 bg-purple-600 text-white rounded-xl hover:bg-purple-500 transition-colors z-10"
-        >
-          Trade
-        </motion.button>
+        <Link to={`/token/${tokenInfo.id}`} className="z-10">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-4 py-2 bg-purple-600 text-white rounded-xl hover:bg-purple-500 transition-colors"
+          >
+            View
+          </motion.button>
+        </Link>
       </div>
 
       {/* Token Stats */}
